@@ -1,5 +1,6 @@
 const wppconnect = require('@wppconnect-team/wppconnect');
 //https://wppconnect.io/wppconnect/index.html
+// https://wppconnect.io/wppconnect/classes/Whatsapp.html
 
 const chat = require('./chat.js');
 

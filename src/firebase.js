@@ -14,20 +14,22 @@ function initDB() {
     }
 }
 
-exports.queryByPhone = async function (client, phone) {
-    initDB(client);
-    if (phone != '') {
-        const phone2 = phone.substring(2);
+exports.queryUserByPhone = async function (messagefrom) {
+    phone = (messagefrom).replace(/[^\d]+/g, '');
+    initDB();
+    if (messagefrom != '') {
         let userdata = null;
         try {
             const queryRef = await db.collection('users')
-                .where('telefone', 'in', [phone, phone2])
+                .where('phone', '=', phone)
                 .get();
             if (!queryRef.empty) {
                 queryRef.forEach((user) => {
                     userdata = user.data();
                     userdata['id'] = user.id;
                 });
+            } else {
+                userdata = await saveUser(phone);
             }
         } catch (_error) {
             console.log(_error);
@@ -38,11 +40,15 @@ exports.queryByPhone = async function (client, phone) {
 
 
 
-exports.save = async function (user) {
+async function saveUser(phone) {
     try {
+        let user = {};
+        user['phone'] = phone;
         user['cadastradoEm'] = firebaseadmin.firestore.Timestamp.fromDate(new Date());
+        user['stage'] = 'welcome';
         const newUser = await db.collection('users').add(user);
         user['id'] = newUser.id;
+        // console.log('new user: ' + JSON.stringify(user));
         return user;
     } catch (_error) {
         console.log("Erro: " + _error);
