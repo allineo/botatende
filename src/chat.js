@@ -13,7 +13,7 @@ exports.checkUser = async function (client, message, userStages) {
     }
 
     if (userStages[message.from].stage == 'welcome') {
-        welcomeMessage(client, message.from);
+        await welcomeMessage(client, message.from);
         userStages[message.from].stage = 'cardapio';
     }
 
@@ -36,15 +36,6 @@ async function hiMessage(client, message, userStages) {
 
 
 async function welcomeMessage(client, messagefrom) {
-    util.sendImages(client, messagefrom, 'Chef Ricardo', '🤖  Bot do *Chef Ricardo* 👨‍🍳');
-
-    /*  client.sendText(message.from, 'A qualquer momento digite C para ver o Cardápio do Dia', {
-          useTemplateButtons: true,
-          buttons: [{
-              id: 'cardapio',
-              text: 'CARDÁPIO DO DIA'
-          }],
-          //title: 'Bot do *Chef Ricardo*',
-          // footer: 'Footer text'
-      });*/
+    await util.sendImageStick(client, messagefrom, 'Chefe Ricardo'); 
+    //client.sendText(messagefrom, 'Cardápio do *Chefe Ricardo* 👨‍🍳'); //🤖 
 }
