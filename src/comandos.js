@@ -21,4 +21,9 @@ exports.checkComandos = async function (client, message, userStages) {
         cardapio.showSucos(client, message.from);
         userStages[message.from].stage = 'cardapiosent';
     }
+
+    if (msgUser.toLowerCase() == 'pizzas' || msgUser.toLowerCase() == 'pizza') {
+        cardapio.showPizzas(client, message.from);
+        userStages[message.from].stage = 'cardapiosent';
+    }
 }

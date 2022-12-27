@@ -19,7 +19,7 @@ exports.sendImageStick = async function (client, messagefrom, imagename) {
     await client
         .sendImageAsSticker(
             messagefrom,
-            './img/' + imagename + '.png'
+            './img/' + imagename + '.jpg'
         )
         .then((result) => {
             //console.log('Result: ', result);

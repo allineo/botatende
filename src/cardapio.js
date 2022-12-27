@@ -77,8 +77,43 @@ exports.showCardapio2 = async function (client, messagefrom) {
 }
 
 
+exports.showPizzas = async function (client, messagefrom) {
+    util.sendImageStick(client, messagefrom, 'Pizzas', '');
+    client.sendText(messagefrom, '*Pizzas* - R$ 19,90 (6 fatias)', {
+        useTemplateButtons: true,
+        buttons: [
+            {
+                text: 'Calabresa'
+            },
+            {
+                text: 'Frango'
+            },
+            {
+                text: 'Quatro Queijos'
+            },
+        ],
+    });
+    client.sendText(messagefrom, '*Pizzas* - R$ 19,90 (6 fatias)', {
+        useTemplateButtons: true,
+        buttons: [
+            {
+                text: 'Portuguesa'
+            },
+            {
+                text: 'Bacon'
+            },
+            {
+                text: 'Mussarela'
+            },
+        ],
+    });
+}
+
+
+
+
 exports.showSucos = async function (client, messagefrom) {
-    util.sendImages(client, messagefrom, 'Sucos', '');
+    util.sendImageStick(client, messagefrom, 'Sucos', '');
 
     client.sendListMessage(messagefrom, {
         buttonText: 'Clique',
